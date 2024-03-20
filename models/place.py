@@ -25,6 +25,7 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     reviews = relationship("Review", backref="place")
 
+
 def __init__(self, *args, **kwargs):
     """initializes Place"""
     super().__init__(*args, **kwargs)

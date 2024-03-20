@@ -2,7 +2,6 @@
 """
 contains class User
 """
-<<<<<<< HEAD
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
