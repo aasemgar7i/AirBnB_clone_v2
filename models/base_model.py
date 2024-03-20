@@ -14,6 +14,7 @@ time = "%Y-%m-%dT%H:%M:%S.%f"
 
 Base = declarative_base()
 
+
 class BaseModel:
     """ BaseModel class from which future classes will inherit """
 
@@ -59,7 +60,7 @@ class BaseModel:
             new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
-             del new_dict["_sa_instance_state"]
+            del new_dict["_sa_instance_state"]
         return new_dict
 
     def delete(self):
