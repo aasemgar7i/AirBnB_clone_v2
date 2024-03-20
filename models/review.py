@@ -2,14 +2,14 @@
 """
 contains class Review
 """
+
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlqlchemy imoprt Column, String, ForeignKey
+from sqlqlchemy imoprt Column, String, Float
 
-
-class Review(BaseModel, Base):
+class Review(BaseModel):
     """
     Review Class
     """
