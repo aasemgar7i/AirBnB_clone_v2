@@ -8,6 +8,7 @@ from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
 from sqlqlchemy imoprt Column, String, Float
+from sqlalchemy.ext.declarative import declarative_base
 
 class Review(BaseModel):
     """
