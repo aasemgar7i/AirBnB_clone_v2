@@ -34,7 +34,7 @@ def __init__(self, *args, **kwargs):
     @property
     def reviews(self):
         """getter attribute returns the list of Review instances"""
-        from models.review import Review
+        from models.review import review
         review_list = []
         all_reviews = models.storage.all(Review)
         for review in all_reviews.values():
