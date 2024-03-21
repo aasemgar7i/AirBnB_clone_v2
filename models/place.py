@@ -8,6 +8,17 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+
+place_amenity = Table("place_amenity", Base.metadata,
+                      Column("place_id", String(60),
+                             ForeignKey("places.id"),
+                             primary_key=True,
+                             nullable=False),
+                      Column("amenity_id", String(60),
+                             ForeignKey("amenities.id"),
+                             primary_key=True,
+                             nullable=False))
 
 
 class Place(BaseModel, Base):
@@ -26,14 +37,6 @@ class Place(BaseModel, Base):
 
     # Define the many-to-many relationship between Place and Amenity
     if getenv("HBNB_TYPE_STORAGE") == "db":
-        metadata = Base.metadata
-        place_amenity = Table('place_amenity', metadata,
-                              Column('place_id', String(60),
-                                     ForeignKey('places.id'), nullable=False),
-                              Column('amenity_id', String(60),
-                                     ForeignKey('amenities.id'),
-                                     nullable=False))
-
         amenities = relationship("Amenity", secondary=place_amenity,
                                  viewonly=False)
 
