@@ -8,7 +8,6 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 
 
 class Place(BaseModel, Base):
@@ -24,17 +23,44 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    reviews = relationship("Review", backref="place")
 
+    # Define the many-to-many relationship between Place and Amenity
+    if getenv("HBNB_TYPE_STORAGE") == "db":
+        metadata = Base.metadata
+        place_amenity = Table('place_amenity', metadata,
+                              Column('place_id', String(60),
+                                     ForeignKey('places.id'), nullable=False),
+                              Column('amenity_id', String(60),
+                                     ForeignKey('amenities.id'),
+                                     nullable=False))
 
-def __init__(self, *args, **kwargs):
-    """initializes Place"""
-    super().__init__(*args, **kwargs)
+        amenities = relationship("Amenity", secondary=place_amenity,
+                                 viewonly=False)
+
+    else:
+        @property
+        def amenities(self):
+            """Getter attribute returns the list of Amenity instances"""
+            amenity_list = []
+            all_amenities = models.storage.all(Amenity)
+            for amenity in all_amenities.values():
+                if amenity.id in self.amenity_ids:
+                    amenity_list.append(amenity)
+            return amenity_list
+
+        @amenities.setter
+        def amenities(self, obj):
+            """Setter attribute handles append method for adding Amenity.id"""
+            if isinstance(obj, Amenity):
+                self.amenity_ids.append(obj.id)
+
+    def __init__(self, *args, **kwargs):
+        """initializes Place"""
+        super().__init__(*args, **kwargs)
 
     @property
     def reviews(self):
         """getter attribute returns the list of Review instances"""
-        from models.review import review
         review_list = []
         all_reviews = models.storage.all(Review)
         for review in all_reviews.values():
