@@ -17,7 +17,8 @@ def do_pack():
     """Generates a .tgz archive from the contents of the web_static folder.
 
     Returns:
-        Archive path if the archive has been correctly generated, otherwise None.
+        Archive path if the archive has been correctly generated, \
+        otherwise None.
     """
     try:
         # Create the versions folder if it doesn't exist
