@@ -4,7 +4,7 @@ from fabric.api import env, put, run
 from os.path import exists
 
 env.hosts = ["100.26.238.68", "100.25.190.136"]
-env.user = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDBuV58INl1/xumSehLJL5XyNwSa8Co55099MC9dS5ZeVCy1ylM1CDEZqBwM99F1svd0ZxuEn1ScdrjxmGMu7QzSqb44OCyoN9ZrBhk621UNTx4X862m/dk8oF+BQczWl8izYfVAXeezuHgZ20EmrtcHcSGFWTi5Pt8GNdDN1eN67ME0w9iA4tK7fRSF4IBDwiuYVPUDSFXSq6eSn0S4mJ2xaYFDpvM4gZPt1CBYI82S+YH+L5j28/w8UstCE60VxvN09CT+HGGxuAzl7RGDJxCB8i/wdg61udZYMLaIDQRXEnSiIALGMqdw3dr2xiCSLmFJiFs0Yzbv6PQUl9d4MNysQVfj3gPi00P6p7wUpLeOXY0f5cukia44H5coc0jRC1FujvSnc7pU36p1z33NQvJua0scGXg8PpdFdf6uFUE6Z6fYwsJzEXNiQOTTmnPVZtX0syGH/vJRx7l0IG66DHR4YzD903dIS5FlVvuVzgiW62PhCLc08pm/9gE/j9h7G0= root@ALX-Students'  # Replace 'your_ssh_username' with your actual SSH username
+env.user = 'ssh'  # Replace 'your_ssh_username' with your actual SSH username
 
 def do_deploy(archive_path):
     """
