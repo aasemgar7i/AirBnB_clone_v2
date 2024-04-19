@@ -8,7 +8,7 @@ Routes:
     /c/<text>: Displays 'C' followed by the value of <text>.
     /python/(<text>): Displays 'Python' followed by the value of <text>.
 """
-from flask import Flask, escape
+from flask import Flask
 
 app = Flask(__name__)
 
@@ -28,14 +28,16 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
     """Display 'c +text'"""
-    return 'C {}'.format(escape(text.replace('_', ' ')))
+    text = text.replace("_", " ")
+    return 'C {}'.format(text)
 
 
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text):
     """Display Python text"""
-    return 'python {}'.format(escape(text.replace('_', ' ')))
+    text = text.replace("_", " ")
+    return 'python {}'.format(text)
 
 
 if __name__ == '__main__':
