@@ -4,6 +4,8 @@ contains class Place
 """
 import models
 from models.base_model import BaseModel, Base
+from models.amenity import Amenity
+from models.review import Review
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
@@ -38,7 +40,7 @@ class Place(BaseModel, Base):
     # Define the many-to-many relationship between Place and Amenity
     if getenv("HBNB_TYPE_STORAGE") == "db":
         amenities = relationship("Amenity", secondary=place_amenity,
-                                 viewonly=False)
+                                 viewonly=False, back_populates="place_amenities")
 
     else:
         @property
