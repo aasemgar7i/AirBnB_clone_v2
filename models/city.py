@@ -9,6 +9,7 @@ import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from models.place import Place
 
 
 class City(BaseModel, Base):
